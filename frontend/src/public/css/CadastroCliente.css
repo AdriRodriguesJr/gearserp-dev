@@ -1,0 +1,96 @@
+.modal-content {
+    width: 100%;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.table-responsive {
+    margin: 20px auto;
+}
+
+.btn-add {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.cabecalho {
+    background-color: #0D1B2A !important;
+}
+
+.modal-header .close {
+    color: white;
+    /* Cor do ícone de fechar */
+    opacity: 1;
+    /* Garante que a opacidade seja total */
+}
+
+.modal-header .close:hover {
+    color: #cccccc;
+    /* Cor ao passar o mouse */
+}
+
+.custom-close {
+    color: white;
+    /* Cor do ícone de fechar */
+}
+
+.custom-close:hover {
+    color: #cccccc;
+    /* Cor ao passar o mouse */
+}
+
+.criar {
+    background-color: #0D1B2A !important;
+}
+
+.table tbody tr:hover {
+    cursor: pointer;
+    /* Muda o cursor para pointer ao passar o mouse sobre a linha */
+    background-color: rgba(13, 27, 42, 0.1);
+    /* Adiciona um efeito visual opcional ao passar o mouse */
+}
+
+.i_cards {
+    color: #2213a5;
+}
+
+.i_cards_excluir{
+    color: red;
+}
+
+.criar_button {
+    background-color: #0D1B2A !important;
+    color: aliceblue !important;
+    font-size: 20px !important;
+    margin-top: 5%;
+}
+
+.crud_button {
+    background-color: #0D1B2A !important;
+    border-radius: 50% !important;
+    color: aliceblue !important;
+    width: 50px;
+    height: 50px;
+    font-size: 20px !important;
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+}
+
+.alertas {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    min-width: 100px;
+    z-index: 100000
+}
+
+td{
+    padding: 2% !important;
+}
