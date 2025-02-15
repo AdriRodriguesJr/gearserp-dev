@@ -155,7 +155,7 @@ VALUES (
     'administrador', 
     'Adriano Rodrigues', 
     'adriano.rodrigues.junior01@gmail.com', 
-    '123456',
+    'Gearserp@2023',
     true,
     CURRENT_TIMESTAMP
 );

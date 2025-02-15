@@ -1,10 +1,10 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    host: 'dpg-csmou6ij1k6c73dm57qg-a.oregon-postgres.render.com',
+    host: 'erp-db',
     user: 'arodrigues',
-    password: 'lk80lQjtIgs4OOoaGLItWUCDZRn1zE1b',
-    database: 'gearserp_ts8d',
+    password: '123456',
+    database: 'gearserp',
     port: 5432,
     ssl: {
         rejectUnauthorized: false

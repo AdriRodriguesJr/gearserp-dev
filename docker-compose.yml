@@ -1,82 +1,58 @@
 version: '3.8'
 
 services:
-  # Banco de dados
+  # Serviço do Banco de Dados (PostgreSQL)
   db:
     image: postgres:13
-    container_name: gearserp-db
+    container_name: erp-db
+    restart: always
     environment:
       POSTGRES_USER: arodrigues
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_PASSWORD: '123456'
       POSTGRES_DB: gearserp
     volumes:
+      - ./db/data:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U arodrigues -d gearserp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
-      - gearserp-network
-    restart: unless-stopped
+      - app_network
 
-  # Backend (API)
+  # Serviço do Backend (Node.js)
   backend:
-    build: ./backend
-    container_name: gearserp-backend
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=db
-      - DB_USER=arodrigues
-      - DB_PASSWORD=123456
-      - DB_NAME=gearserp
-      - DB_PORT=5432
-    networks:
-      - gearserp-network
-    depends_on:
-      - db
-    restart: unless-stopped
-
-  # Frontend (React/Vite)
-  frontend:
-    build: ./frontend
-    container_name: gearserp-frontend
-    networks:
-      - gearserp-network
-    restart: unless-stopped
-
-  # Reverse Proxy (Nginx)
-  reverse-proxy:
-    build: ./nginx
-    container_name: gearserp-proxy
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: erp-backend
+    restart: always
+    working_dir: /app
+    env_file:
+      - .env
     ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt  # Certificados SSL
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf  # Configuração do Nginx
-    networks:
-      - gearserp-network
+      - "3000:3000"
     depends_on:
-      - frontend
+      db:
+        condition: service_healthy
+    networks:
+      - app_network
+
+  # Serviço do Frontend (React/Vite com Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: erp-frontend
+    restart: always
+    ports:
+      - "80:80"  # O container Nginx escuta na porta 80
+    depends_on:
       - backend
-    restart: unless-stopped
-
-  # Certbot (Gerador de Certificados SSL)
-  certbot:
-    image: certbot/certbot
-    container_name: gearserp-certbot
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/data:/var/www/certbot  # Pasta para validação do domínio
-    command: certonly --webroot --webroot-path=/var/www/certbot --non-interactive --agree-tos --email adriano.rodrigues.junior01@gmail.com -d gearserp.space -d www.desenvolvimento.gearserp.space
     networks:
-      - gearserp-network
-    depends_on:
-      - reverse-proxy
+      - app_network
 
-# Configuração de redes
 networks:
-  gearserp-network:
+  app_network:
     driver: bridge
-
-# Volumes persistentes
-volumes:
-  postgres_data:
-  certbot:
