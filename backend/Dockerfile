@@ -4,6 +4,9 @@ FROM node:22 AS builder
 # Define o diretório de trabalho dentro do container
 WORKDIR /app
 
+# Instala o netcat
+RUN apt-get update && apt-get install -y netcat-traditional
+
 # Copia apenas package.json e package-lock.json para instalar dependências primeiro (melhora cache)
 COPY package*.json ./
 
