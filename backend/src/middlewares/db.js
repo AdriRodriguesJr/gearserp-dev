@@ -6,9 +6,7 @@ const pool = new Pool({
     password: '123456',
     database: 'gearserp',
     port: 5432,
-    ssl: {
-        rejectUnauthorized: false
-    },
+    ssl: false,  // 🔥 Alterado para FALSE para evitar erro de SSL
     max: 10,
     idleTimeoutMillis: 10000,
 });

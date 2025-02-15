@@ -9,7 +9,7 @@ require('express-async-errors');
 
 // Configuração de CORS
 const corsOptions = {
-    origin: ['http://localhost:3000', 'https://gearserp.vercel.app'], // Ajuste conforme necessário
+    origin: ['http://localhost:3000', 'http://desenvolvimento.gearserp.space'], // Ajuste conforme necessário
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true // Permite o envio de cookies, se necessário
