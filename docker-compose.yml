@@ -11,15 +11,15 @@ services:
       POSTGRES_PASSWORD: '123456'
       POSTGRES_DB: gearserp
     volumes:
-      - ./db/data:/var/lib/postgresql/data  # 🔥 Garante persistência do banco
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  # 🔥 Garante execução do init.sql
+      - ./db/data:/var/lib/postgresql/data  # 🔥 Persistência do banco
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  # 🔥 Copia o init.sql para rodar manualmente depois
+    ports:
+      - "5432:5432"  # 🔥 Expor para conexão local
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U arodrigues -d gearserp"]
       interval: 10s
       timeout: 5s
       retries: 5
-    command: >
-      bash -c "docker-entrypoint.sh postgres & sleep 5 && psql -U arodrigues -d gearserp -f /docker-entrypoint-initdb.d/init.sql"
     networks:
       - app_network
 
@@ -39,9 +39,14 @@ services:
       db:
         condition: service_healthy
     entrypoint: >
-      sh -c "echo '⏳ Aguardando banco de dados...' &&
-             sleep 10 &&
-             npm start"
+      sh -c "
+      echo '⏳ Aguardando banco de dados...';
+      until nc -z db 5432; do
+        sleep 1;
+        echo '⏳ Aguardando banco de dados...';
+      done;
+      echo '✅ Banco de dados está pronto!';
+      npm start"
     networks:
       - app_network
 
