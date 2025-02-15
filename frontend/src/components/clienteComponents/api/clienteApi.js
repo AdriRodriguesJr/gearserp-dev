@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://gearserp.onrender.com/api/cliente';
+const API_URL = '/api/cliente';
 
 // GET - Buscar todos os clientes
 export const getClientes = async () => {

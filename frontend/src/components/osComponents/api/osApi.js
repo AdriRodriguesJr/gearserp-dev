@@ -1,7 +1,7 @@
 // osApi.js
 import axios from 'axios';
 
-const BASE_URL = 'https://gearserp.onrender.com/api';
+const BASE_URL = '/api';
 
 export const osApi = {
   // Ordens de Serviço

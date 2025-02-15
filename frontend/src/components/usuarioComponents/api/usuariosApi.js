@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://gearserp.onrender.com/api/usuarios';
+const API_URL = '/api/usuarios';
 
 // GET - Buscar todos os usuarios
 export const getUsuarios = async () => {

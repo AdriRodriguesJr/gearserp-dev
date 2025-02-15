@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Configuração global do Axios
-axios.defaults.baseURL = 'https://gearserp.onrender.com';
+axios.defaults.baseURL = '';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 // Interceptor para logging
