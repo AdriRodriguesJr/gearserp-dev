@@ -11,10 +11,10 @@ services:
       POSTGRES_PASSWORD: '123456'
       POSTGRES_DB: gearserp
     volumes:
-      - ./db/data:/var/lib/postgresql/data  # 🔥 Persistência do banco
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql  # 🔥 Copia o init.sql para rodar manualmente depois
+      - ./db/data:/var/lib/postgresql/data  # Persistência do banco
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "5432:5432"  # 🔥 Expor para conexão local
+      - "5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U arodrigues -d gearserp"]
       interval: 10s
@@ -50,7 +50,7 @@ services:
     networks:
       - app_network
 
-  # Serviço do Frontend (React/Vite com Nginx)
+  # Serviço do Frontend (React/Vite com Apache)
   frontend:
     build:
       context: ./frontend
@@ -58,7 +58,7 @@ services:
     container_name: erp-frontend
     restart: always
     ports:
-      - "80:80"  # O container Nginx escuta na porta 80
+      - "80:80"  # Apache servirá na porta 80
     depends_on:
       - backend
     networks:
