@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '/api/cliente';
+const API_URL = 'desenvolvimento.gearserp.space/api/cliente';
 
 // GET - Buscar todos os clientes
 export const getClientes = async () => {

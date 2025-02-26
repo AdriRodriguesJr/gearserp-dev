@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Configuração global do Axios
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'desenvolvimento.gearserp.space';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 // Interceptor para logging

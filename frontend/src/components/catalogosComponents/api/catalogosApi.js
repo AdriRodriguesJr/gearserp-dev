@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '/api/catalogos';
+const API_URL = 'desenvolvimento.gearserp.space/api/catalogos';
 
 // GET - Buscar catálogos por tipo de veículo
 export const getCatalogosPorTipo = async (tipoVeiculo) => {

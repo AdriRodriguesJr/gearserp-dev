@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '/api/pecas';
+const API_URL = 'desenvolvimento.gearserp.space/api/pecas';
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dmwp8u6ap/image/upload';
 
 // GET - Buscar todas as peças
@@ -94,7 +94,7 @@ export const atualizarPeca = async (id, formData) => {
         return response.data;
     } catch (error) {
         throw new Error('Erro ao atualizar peça: ' + error.message);
-    }
+    }desenvolvimento.gearserp.space
 };
 
 // DELETE - Excluir peça

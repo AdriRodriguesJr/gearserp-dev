@@ -1,7 +1,7 @@
 // osApi.js
 import axios from 'axios';
 
-const BASE_URL = '/api';
+const BASE_URL = 'desenvolvimento.gearserp.space/api';
 
 export const osApi = {
   // Ordens de Serviço
