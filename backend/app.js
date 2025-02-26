@@ -21,7 +21,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Rotas da API
-app.use('/api', Routes);
+app.use('desenvolvimento.gearserp.space/api', Routes);
 
 // Middleware de tratamento de erros
 app.use((err, req, res, next) => {

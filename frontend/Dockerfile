@@ -1,5 +1,5 @@
 # Etapa 1: Construção do frontend (React, Vite ou outro)
-FROM node:18 AS builder
+FROM node:22 AS builder
 
 WORKDIR /app
 
