@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'desenvolvimento.gearserp.space/api/pecas';
+const API_URL = '/api/pecas';
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dmwp8u6ap/image/upload';
 
 // GET - Buscar todas as peças
